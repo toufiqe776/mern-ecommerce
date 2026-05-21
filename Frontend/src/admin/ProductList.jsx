@@ -43,6 +43,7 @@ export default function ProductList(){
 
                 </thead>
 
+
                 <tbody >
              {products.map((product) =>(
                 <tr key={product._id} className="text-center">
