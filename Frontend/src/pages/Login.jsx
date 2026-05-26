@@ -22,7 +22,9 @@ export default function Login(){
         const res=await api.post('/auth/login',form);
         //save token to localStorage
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId",res.data.user.id);
         setMsg("Login Successful");
+         alert("Login Successful");
         //redirect to home page after 1 second 
         setTimeout(() =>{
             navigate("/")

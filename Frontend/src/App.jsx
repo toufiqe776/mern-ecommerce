@@ -1,56 +1,79 @@
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from "react-router";
+
+import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 
 import ProductList from "./admin/ProductList";
 import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
 
+// Layout Component
+function Layout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+}
+
+// Router Configuration
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
+    element: <Layout />,
 
-  {
-    path: "/login",
-    element: <Login />,
-  },
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
 
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
+      {
+        path: "/login",
+        element: <Login />,
+      },
 
-  {
-    path: "/product/:id",
-    element: <ProductDetails />,
-  },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
 
-  // Product List
-  {
-    path: "/admin/products",
-    element: <ProductList />,
-  },
+      {
+        path: "/product/:id",
+        element: <ProductDetails />,
+      },
 
-  // Add Product
-  {
-    path: "/admin/products/add",
-    element: <AddProduct />,
-  },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
 
-  // Edit Product
-  {
-    path: "/admin/products/update/:id",
-    element: <EditProduct />,
+      // Admin Routes
+      {
+        path: "/admin/products",
+        element: <ProductList />,
+      },
+
+      {
+        path: "/admin/products/add",
+        element: <AddProduct />,
+      },
+
+      {
+        path: "/admin/products/update/:id",
+        element: <EditProduct />,
+      },
+    ],
   },
- 
 ]);
 
 export default function App() {

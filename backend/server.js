@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth',authRoutes);
 app.use('/api/products',productsRoutes);
-app.use('/cart',cart);
+app.use('/api/cart',cart);
 
 // app.get('/',(req, res)=>{
 //     res.send('API is running...');
