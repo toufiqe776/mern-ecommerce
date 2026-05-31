@@ -15,6 +15,8 @@ import Cart from "./pages/Cart";
 import ProductList from "./admin/ProductList";
 import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
+import CheckoutAddress from "./pages/CheckoutAddress";
+import Checkout from "./pages/Checkout";
 
 // Layout Component
 function Layout() {
@@ -72,6 +74,10 @@ const router = createBrowserRouter([
         path: "/admin/products/update/:id",
         element: <EditProduct />,
       },
+      {path:"/checkout-address",element :<CheckoutAddress/>},
+      {
+        path:"/checkout", element: < Checkout/>
+      }
     ],
   },
 ]);
