@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import productsRoutes from "./routes/productsRoutes.js";
 import cart from './routes/cart.js';
 import address from './routes/address.js'
+import Order from './models/Order.js';
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/products',productsRoutes);
 app.use('/api/cart',cart);
 app.use('/api/address',address);
+app.use('/api/order',Order);
 
 // app.get('/',(req, res)=>{
 //     res.send('API is running...');
