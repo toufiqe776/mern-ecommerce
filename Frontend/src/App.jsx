@@ -17,6 +17,7 @@ import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
 import CheckoutAddress from "./pages/CheckoutAddress";
 import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
 
 // Layout Component
 function Layout() {
@@ -77,6 +78,9 @@ const router = createBrowserRouter([
       {path:"/checkout-address",element :<CheckoutAddress/>},
       {
         path:"/checkout", element: < Checkout/>
+      },
+      {
+        path :"order-success/:id", element:<OrderSuccess/>
       }
     ],
   },
