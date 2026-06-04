@@ -4,9 +4,22 @@ import { api } from "../api/axios";
 
 export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
-  const userId = localStorage.getItem("userId");
+  // Listen for login/logout changes
+  useEffect(() => {
+    const handleUserChange = () => {
+      setUserId(localStorage.getItem("userId"));
+    };
 
+    window.addEventListener("userChanged", handleUserChange);
+
+    return () => {
+      window.removeEventListener("userChanged", handleUserChange);
+    };
+  }, []);
+
+  // Load cart count
   useEffect(() => {
     const loadCart = async () => {
       try {
@@ -17,9 +30,6 @@ export default function Navbar() {
 
         const res = await api.get(`/cart/${userId}`);
 
-        console.log(res.data);
-
-        // Total quantity count
         const total = res.data.items?.reduce(
           (sum, item) => sum + item.quantity,
           0
@@ -42,8 +52,12 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("userId");
-    window.location.reload();
-    
+    localStorage.removeItem("token");
+
+    setUserId(null);
+
+    window.dispatchEvent(new Event("userChanged"));
+    Navigate("/");
   };
 
   return (
@@ -53,25 +67,26 @@ export default function Navbar() {
       </Link>
 
       <div className="flex gap-4 items-center">
-        {/* Cart */}
-        <Link
-          to="/cart"
-          className="relative flex items-center justify-center 
-          bg-gray-100 hover:bg-gray-200
-          w-12 h-12 rounded-full text-2xl transition shadow"
-        >
-          🛒
+        {userId && (
+          <Link
+            to="/cart"
+            className="relative flex items-center justify-center
+            bg-gray-100 hover:bg-gray-200
+            w-12 h-12 rounded-full text-2xl transition shadow"
+          >
+            🛒
 
-          {cartCount > 0 && (
-            <span
-              className="absolute -top-2 -right-2
-              bg-red-500 text-white text-xs
-              w-5 h-5 rounded-full flex items-center justify-center"
-            >
-              {cartCount}
-            </span>
-          )}
-        </Link>
+            {cartCount > 0 && (
+              <span
+                className="absolute -top-2 -right-2
+                bg-red-500 text-white text-xs
+                w-5 h-5 rounded-full flex items-center justify-center"
+              >
+                {cartCount}
+              </span>
+            )}
+          </Link>
+        )}
 
         {!userId ? (
           <>

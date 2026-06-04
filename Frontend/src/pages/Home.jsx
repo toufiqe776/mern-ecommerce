@@ -7,18 +7,26 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
 
-  // Load products
-  const loadProducts = async () => {
-    try {
-      const res = await api.get(
-        `/products?search=${search}&category=${category}`
-      );
 
-      setProducts(res.data);
-    } catch (error) {
-      console.error("Error loading products:", error);
-    }
-  };
+  const loadProducts = async () => {
+  try {
+    const res = await api.get(
+      `/products?search=${search}&category=${category}`
+    );
+
+    // Always keep products as an array
+    const data = Array.isArray(res.data)
+      ? res.data
+      : Array.isArray(res.data?.products)
+      ? res.data.products
+      : [];
+
+    setProducts(data);
+  } catch (error) {
+    console.error("Error loading products:", error);
+    setProducts([]);
+  }
+};
 
   useEffect(() => {
     loadProducts();
@@ -72,9 +80,9 @@ export default function Home() {
           className="border px-3 py-2 rounded"
         >
           <option value="">All Categories</option>
-          <option value="laptops">Laptop</option>
+          <option value="Laptop">Laptop</option>
           <option value="Fashion">Fashion</option>
-          <option value="mobile">Mobile</option>
+          <option value="Mobile">Mobile</option>
         </select>
       </div>
 

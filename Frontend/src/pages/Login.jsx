@@ -16,27 +16,26 @@ export default function Login(){
             [e.target.name]:e.target.value
         });
     }
-   const handleSubmit =async(e) =>{
-    e.preventDefault();
-    try{
-        const res=await api.post('/auth/login',form);
-        //save token to localStorage
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userId",res.data.user.id);
-        setMsg("Login Successful");
-         alert("Login Successful");
-        //redirect to home page after 1 second 
-        setTimeout(() =>{
-            navigate("/")
-        },1000);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    }catch(err){
-        setMsg(err.response?.data?.message || "An error occurred");
-    }
+  try {
+    const res = await api.post("/auth/login", form);
 
+    // Save user data
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("userId", res.data.user.id);
 
+    // Notify Navbar that user logged in
+    window.dispatchEvent(new Event("userChanged"));
 
-   }
+    setMsg("Login Successful");
+
+    navigate("/");
+  } catch (err) {
+    setMsg(err.response?.data?.message || "An error occurred");
+  }
+};
   return(
 <div className="flex item-center justify-center min-h-screen bg-gray-100 px-4">
     <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
