@@ -72,9 +72,9 @@ export default function Home() {
           className="border px-3 py-2 rounded"
         >
           <option value="">All Categories</option>
-          <option value="laptops">Laptop</option>
+          <option value="Laptop">Laptop</option>
           <option value="Fashion">Fashion</option>
-          <option value="mobile">Mobile</option>
+          <option value="Mobile">Mobile</option>
         </select>
       </div>
 
