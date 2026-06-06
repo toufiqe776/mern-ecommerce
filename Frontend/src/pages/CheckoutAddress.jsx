@@ -41,15 +41,13 @@ export default function CheckoutAddress(){
                 name={key}
                 placeholder={key}
                 onChange={handleChange}
-                className="w-full  p-2 border border-gray-300 rounded"
-                
-                
+                className="w-full  p-2 border border-gray-300 rounded mb-2"
                 />
             ))
           }
           <button 
           onClick={saveAddress}
-          className="w-full bg-blue-500 text-white p-2 rounded"
+          className="w-full bg-blue-500 text-white p-2 mt-2 rounded "
           >Save Address</button>
 
         </div>
