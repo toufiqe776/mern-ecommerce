@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 
 import authRoutes from "./routes/authRoutes.js";
 import productsRoutes from "./routes/productsRoutes.js";
-import cartRoutes from "./routes/cart.js";
+import cartRoutes from "./routes/Cart.js";
 import addressRoutes from "./routes/address.js";
 import orderRoutes from "./routes/orderRoutes.js"; // Order model nahi, route import karein
 

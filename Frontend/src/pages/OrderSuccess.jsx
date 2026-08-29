@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 export default function OrderSuccess() {
     const {id} =useParams();
 
-    const hoHome=() =>{
+    const goHome=() =>{
         window.location.href="/"
     }
     return(

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { api } from "../api/axios";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [cartCount, setCartCount] = useState(0);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
@@ -57,7 +58,7 @@ export default function Navbar() {
     setUserId(null);
 
     window.dispatchEvent(new Event("userChanged"));
-    Navigate("/");
+    navigate("/");
   };
 
   return (

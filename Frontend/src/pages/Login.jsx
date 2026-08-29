@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import { useNavigate } from 'react-router';
 import {api} from "../api/axios"
+import { Link } from 'react-router';
 
 export default function Login(){
     const [form,setForm] =useState({
@@ -38,7 +39,7 @@ export default function Login(){
 };
   return(
 <div className="flex item-center justify-center min-h-screen bg-gray-100 px-4">
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+    <div className="bg-white p-5 rounded-8 shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center">Login to Your Account </h2>
         {
             msg && (<div className="mb-4 text-center text-sm text-red-600 font-medium"> {msg}</div>
@@ -62,6 +63,9 @@ export default function Login(){
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
         required
         />
+        <Link to="/login" className="text-blue-600 hover:underline flex item-end justify-end" onClick={() =>alert("In progress")}>
+  Forgot Password?
+</Link>
         <button 
         type="submit"
         className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"

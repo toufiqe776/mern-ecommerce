@@ -14,8 +14,6 @@ const addressSchema = new mongoose.Schema({
         state:String,
         pinCode:String,
     
-},{
-    timesStamps:true
-});
+},{ timestamps: true });
 
 export default mongoose.model('Address',addressSchema);

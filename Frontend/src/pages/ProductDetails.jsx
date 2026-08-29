@@ -7,10 +7,12 @@ export default  function ProductDetails(){
     const [product,setProduct] =useState(null);
      
      const loadProduct  =async() =>{
-        const res=  await api.get("/products/");
-        const p=res.data.find((item) => item._id===id);
-        setProduct(p);
-
+        try {
+            const res = await api.get(`/products/${id}`);
+            setProduct(res.data);
+        } catch (error) {
+            console.error("Error loading product:", error);
+        }
      }
 
     useEffect(() =>{
@@ -20,7 +22,7 @@ export default  function ProductDetails(){
         return <div>Loading...</div>
     }
     return(
-        <div className="p-6 max-w-3xl ax-auto">
+        <div className="p-6 max-w-3xl mx-auto">
             <img src={product.image} alt ={product.title} className="w-full h-40 object-contain bg-white rounded"/>
             <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
             <p className="text-gray-700 mt-2">{product.description}</p>
